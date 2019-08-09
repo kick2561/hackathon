@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+	<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+
+	   <div align="center">
+		   <table>
+				<tr><td>Email: <input type="text" name="email" id="email"><br></td></tr>
+				<tr><td>Password: <input type="password" name="password" id = "password"><br></td></tr>
+					<tr><td>Phoneno: <input type="text" name="phoneno" id="phoneno"><br></td></tr>
+					<tr><td align="center"><button onclick="registerUser()">Register</button></td></tr>
+	</table>
+	</div>
+	
+
+<script type="text/javascript">
+	
+	function registerUser() {
+
+	var database = firebase.database().ref("users");
+
+	
+	var email = document.getElementById("email").value;
+	var password = document.getElementById("password").value;
+	var phoneno = document.getElementById("phoneno").value;
+
+
+	console.log("email is " + email);
+
+	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  // Handle Errors here.
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+	  return ;
+	  // ...
+	});
+
+	console.log("user registered successfully");
+
+
+	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+	  // Handle Errors here.
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+	  // ...
+	});
+	
+	console.log("user signed in ");
+	firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	  	var uid = user.uid;
+	  	userdata = {"email":email, "phoneno":phoneno, "uid":uid, "score":"0"};
+	  	database.push(userdata);
+	  	console.log("user node added");
+
+	    
+	  } else {
+	    // User is signed out.
+	    // ...
+	  }
+});
+
+
+
+	
+}
+</script>
+	
+
+
+
+	
+
+</body>
+</html>
