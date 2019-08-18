@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+	<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyCQb69lVpLgi62Erj1BK7l8fvpc03PDY6s",
+	    authDomain: "cfgproject-5a81c.firebaseapp.com",
+	    databaseURL: "https://cfgproject-5a81c.firebaseio.com",
+	    projectId: "cfgproject-5a81c",
+	    storageBucket: "",
+	    messagingSenderId: "332561097117",
+	    appId: "1:332561097117:web:2fe012c5193d867c"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	</script>
+
+	<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+
+	
+		<!-- Email: <input type="text" name="email" id="email"><br>
+		Password: <input type="password" name="password" id = "password"><br> -->
+		
+				<div class="collapse navbar-collapse" id="navbarSupportedContent" >
+				  <ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+					  <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					  <a class="nav-link" href="register.html">Register</a>
+					</li>
+					<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Tests
+					  </a>
+					  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="newtest.html">New Test</a>
+						<a class="dropdown-item" href="taketest.html">Take Test</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+					  </div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  Referrals
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						  <a class="dropdown-item" href="studentrefer.html">Refer a Friend</a>
+						  <a class="dropdown-item" href="refer.html">Referred Friends</a>
+						  <div class="dropdown-divider"></div>
+						  <a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					  </li>
+					<li class="nav-item active">
+					  <a class="nav-link" href="newques.html">New Question</a>
+					</li>
+					<li class="nav-item active">
+							<a class="nav-link" href="chatbot.html">Chat</a>
+						  </li>
+				  </ul>
+				  <form class="form-inline my-2 my-lg-0">
+				  	
+				  	
+					<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" > -->
+
+
+					<a href="#" class="btn btn-outline-success my-2 my-sm-0" type="submit"><span>
+				  		<i class="fa fa-search"></i>
+				  	</span>Search</a>
+				  </form>
+				</div>
+			  </nav>
+
+
+<div class="container">
+		<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Password">
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+</form>
+		
+		<button onclick="signInUser()" class="btn">Login</button>
+</div>
+	<script type="text/javascript">
+		
+
+		function signInUser()
+		{
+
+			alert("loggin in");			
+			var email = document.getElementById("email").value;
+			var password = document.getElementById("password").value;
+			console.log(email, password)
+			firebase.auth().signInWithEmailAndPassword(email, password)
+			.then((res)=>{
+				console.log(res);
+				console.log("hey");
+				window.location.href = "index.html";
+			})
+			.catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  console.log(error);
+			  alert("error");
+			  // ...
+			});
+			console.log("signin successful");
+			alert("signin successful");
+			 
+		}
+	</script>
+		
+
+
+	
+
+</body>
+</html>		
